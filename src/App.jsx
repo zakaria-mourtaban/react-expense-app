@@ -1,7 +1,7 @@
 import React from 'react';
 import CreateAcc from "./pages/createacc"
 import Tracker from "./pages/tracker"
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom"; 
 
 const App = () => {
 	const location = useLocation();

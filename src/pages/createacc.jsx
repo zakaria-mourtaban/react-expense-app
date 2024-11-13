@@ -1,6 +1,15 @@
 import React from 'react';
 import "../styles/acc.css"
+import { useNavigate } from 'react-router-dom';
+
+const id = localStorage.getItem("id")
+	
 const CreateAcc = () => { 
+	const navigate = useNavigate()
+	if (id === null)
+	{
+		navigate("/")
+	}
     return (
         <div className='container'>
             <h1>Login</h1>
