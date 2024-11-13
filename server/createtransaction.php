@@ -23,7 +23,7 @@ echo $date;
 $earned = $_POST['earned'];
 
 // Prepare the SQL statement with corrected column names
-$query = $connection->prepare("INSERT INTO `transactions` (`transaction_id`, `user_id`, `amount`, `title`, `date`, `earned`) 
+$query = $connection->prepare("INSERT INTO `transactions` (`transaction_id`, `users_id`, `amount`, `title`, `date`, `earned`) 
 VALUES (?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE `amount` = VALUES(`amount`), `title` = VALUES(`title`), `date` = VALUES(`date`), `earned` = VALUES(`earned`)");
 
 // Bind the parameters with the corrected types

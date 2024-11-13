@@ -10,26 +10,20 @@ $dbname = "expensedb";
 
 $connection = new mysqli($host, $dbuser, $pass, $dbname);
 if ($connection->connect_error) {
-	die("Error happened");
+	die(json_encode(['error' => 'Database connection failed']));
 }
 
-$users_id = @$_POST["id"];
-// print_r($_REQUEST);
-$query = $connection->prepare("SELECT * FROM `transactions`");
+$users_id = $_POST["id"] ?? null;
 
+
+$query = $connection->prepare("SELECT * FROM `transactions` WHERE users_id = 1");
 $query->execute();
 
 $result = $query->get_result();
+$transactions = $result->fetch_all(MYSQLI_ASSOC);
 
-if ($result->num_rows > 0) {
-	$array = [];
-	while ($row = $result->fetch_assoc()) {
-		if ($row['user_id'] == $users_id) {
-			$array[] = $row;
-		}
-	}
-	echo json_encode($array);
-} else {
-	echo json_encode(['error' => $query->error]);
-}
+echo json_encode($transactions ? $transactions : ['error' => 'No transactions found']);
 
+
+$connection->close();
+?>
