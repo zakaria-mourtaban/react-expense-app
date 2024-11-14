@@ -14,7 +14,11 @@ const Tracker = () => {
     const [filterDate, setFilterDate] = useState("");
     const [notesFilter, setNotesFilter] = useState("");
     const [budget, setBudget] = useState(0);
-    const userId = 1;
+    const navigate = useNavigate();
+    const userId;
+    useEffect(() => {
+        document.getElementById("id") ? userId = document.getElementById("id") : navigate("/login");
+    }, []);
 
     useEffect(() => {
         loadTransactions();
